@@ -1,0 +1,8 @@
+__pycache__ 
+*.pyc
+*.pyo
+
+bin
+lib
+include
+q_learning
