@@ -1,14 +1,15 @@
 # Imports:
 # --------
 from assignment1Delivery import create_env
-from q_learning import train_q_learning, visualize_q_table
+from q_learning import train_q_learning, visualize_q_table, render_result
 
 # User definitions:
 # -----------------
 train = True
 visualize_results = True
+render_results = False
 
-learning_rate = 0.1  # Learning rate
+learning_rate = 0.2  # Learning rate
 gamma = 0.9 # Discount factor
 epsilon = 1 # Exploration rate
 epsilon_min = 0.1 # Minimum exploration rate
@@ -59,3 +60,16 @@ if visualize_results:
                       q_values_path="q_table.npy",
                       treeArray=treesArray
                       )
+if render_results:
+    # Render the results:
+    # -------------------
+        
+    env = create_env(goal_coordinates=goal_coordinates,
+                        restourantPosition=restourantPosition,
+                        hell_state_coordinates=hell_state_coordinates,
+                        tree_array=treesArray
+                        )
+    render_result(
+        env=env,
+        q_table_path="q_table.npy",
+    )

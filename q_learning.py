@@ -3,7 +3,7 @@
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import time
 
 navigations = [ (0, 1), (0, -1), (1, 0), (-1, 0) ]
 
@@ -200,5 +200,30 @@ def visualize_q_table(hell_state_coordinates=[(2, 1), (0, 4)],
         plt.tight_layout()
         plt.show()
 
+    except FileNotFoundError:
+        print("No saved Q-table was found. Please train the Q-learning agent first or check your path.")
+
+def render_result(
+        env,
+        q_table_path="q_table.npy",
+):
+    try:
+        q_table = np.load(q_table_path)
+        state, info = env.reset()
+        state = tuple(state)
+        total_reward = 0
+        while True:
+            action = np.argmax(q_table[state])
+            next_state, reward, done, info = env.step(action)
+            env.render()
+            # wait 1 second:
+            time.sleep(0.4)
+            next_state = tuple(next_state)
+            total_reward += reward
+            state = next_state
+            if done:
+                break
+        env.close()
+        print(f"Total Reward: {total_reward}")
     except FileNotFoundError:
         print("No saved Q-table was found. Please train the Q-learning agent first or check your path.")
