@@ -162,10 +162,8 @@ def visualize_q_table(hell_state_coordinates=[(2, 1), (0, 4)],
             mask[hell_state_coordinates[i]] = True
         for i in range(len(treeArray)):
             mask[treeArray[i]] = True
-        optimal_policy = np.argmax(q_table, axis=3)
         for has_food_index in range(2):
             # show the plot for the final answer using arrows:
-            optimal_policy_indices_array = [(0,0)]
             ax = axes[2][has_food_index]
             # find the index of the maximum Q-value for each state
             optimal_policy = np.argmax(q_table[:,:,has_food_index,:], axis=2)

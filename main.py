@@ -5,9 +5,9 @@ from q_learning import train_q_learning, visualize_q_table, render_result
 
 # User definitions:
 # -----------------
-train = True
+train = False
 visualize_results = True
-render_results = False
+render_results = True
 
 learning_rate = 0.2  # Learning rate
 gamma = 0.9 # Discount factor
